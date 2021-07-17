@@ -14,14 +14,16 @@ contract Ticketting {
     // A map of users and the number of tickets they purchased
     mapping (address => uint) purchasedTickets;
 
+    event Purchase(address indexed by, uint slots);
+
     // This is the constructor whose code is run only when the contract is created.
-    constructor(string memory _eventName, uint  _totalSlots) {
+    constructor(string memory _eventName, uint  _totalSlots) public {
         owner = msg.sender;
         eventName = _eventName;
         totalSlots = _totalSlots;
         usedSlots = 0;
-    }
-    
+    }    
+
     // Checks if there are tickets for the event available
     function isAvailable() public view returns (bool) {
         return totalSlots > usedSlots;
@@ -37,6 +39,7 @@ contract Ticketting {
         if (isAvailable()) {
             purchasedTickets[msg.sender] += 1;
             usedSlots += 1;
-        }        
+            emit Purchase(msg.sender, purchasedTickets[msg.sender]);
+        }
     }
 }
