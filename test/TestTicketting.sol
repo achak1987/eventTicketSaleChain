@@ -15,16 +15,14 @@ contract TestTicketting {
   // Queries a function from the deployed network
   function testInitialAvailabilityUsingDeployedContract() public {
     Ticketting _event = Ticketting(DeployedAddresses.Ticketting());
-
     bool expected = true;
-
     Assert.equal(_event.isAvailable(), expected, "The availability check on deployed contract was unsuccessful");
   }
 
   // Queries a function by first creating an instance of the smart contract
   function testInitialAvailabilityUsingNewContract() public {
     Ticketting _event = new Ticketting('New Event 1', 5);
-
+    bool expected = true;
     Assert.equal(_event.isAvailable(), expected, "The availability check on a new contract instance was unsuccessful");
   }
 }
