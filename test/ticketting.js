@@ -2,7 +2,7 @@
 const Ticketting = artifacts.require("Ticketting");
 
 // We supply the default accounts the contract instance so as to be able to interact with it using a purticular account
-contract('Ticketting', (accounts) => {
+contract(Ticketting, accounts => {
   // Utilizing the web3 package, we write test cases to be executed on the smart contract
   // Test case 1: Checking that after deployment of the contract no user including account 1 should have any ticekts
   it('should get 0 ticket for the first account', async () => {
